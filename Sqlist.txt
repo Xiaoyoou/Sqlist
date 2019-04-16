@@ -1,0 +1,67 @@
+#includestdio.h
+#includemalloc.h
+#define OK 1
+#define ERROR 0
+typedef int ElemType;
+typedef int status;
+typedef struct Node
+{
+    ElemType data;
+     struct Node next;
+}Node;
+typedef struct Node LinkList;
+
+查找链表第i个结点位置的元素
+status GetElem(LinkList L,int i,ElemType e)
+{
+    LinkList p;
+    int j=1;
+    p=L-next;p指向链表的第一个结点
+    while(p!=NULL&&ji){
+        p=p-next;
+        ++j;
+    }
+    if(p=NULLji)
+    {
+        return ERROR;
+    }
+
+    e=p-data;
+    return OK;
+}
+
+status ListInsert(LinkList L,int i,ElemType e){
+    LinkList p,s;
+    p=L;
+    int j=1;
+    while(p!=NULL&&ji){
+        p=p-next;
+        ++j;
+    }
+    if(p==NULLji)
+    {
+        return ERROR;
+    }
+    s=(LinkList)malloc(sizeof(Node));
+    s-data=e;
+    s-next=p-next;
+    p-next=s;
+    return OK;
+}
+status ListDelete(LinkList L,int i,ElemType e){
+    LinkList p,s;
+    p=L;
+    int j=1;
+    while(p!=NULL&&ji){
+        p=p-next;
+        ++j;
+    }
+      if(p==NULLji)
+    {
+        return ERROR;
+    }
+    s=p-next;
+    p-next=p-next-next;
+    e=s-data;
+    free(s);
+}
